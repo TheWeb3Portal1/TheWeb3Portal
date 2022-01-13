@@ -12,11 +12,23 @@
       ></v-skeleton-loader>
 
       <v-row v-else>
-        <v-col cols="6" md="3" v-for="(it, i) in list" :key="i">
+        <v-col cols="12" md="3" v-for="(it, i) in list" :key="i">
           <div class="item pa-4 pl-5 bdrs-3">
-            <v-avatar size="55">
-              <v-img :src="it.logo || `img/logo/${it.title}.png`"></v-img>
-            </v-avatar>
+            <div class="d-flex">
+              <v-avatar :size="55">
+                <v-img :src="it.logo || `img/logo/${it.title}.png`"></v-img>
+              </v-avatar>
+              <div class="ml-auto ta-r">
+                <v-chip small color="#A184BC" v-if="it.mainnet">
+                  <span class="white-0">{{ it.mainnet }}</span>
+                </v-chip>
+                <div class="pa-1 pr-0">
+                  <v-chip small color="#ECB176" v-if="it.type">
+                    <span class="white-0">{{ it.type }}</span>
+                  </v-chip>
+                </div>
+              </div>
+            </div>
             <h3 class="mt-3 fz-15">{{ it.title }}</h3>
             <div class="mt-1 fz-13 gray-3 line-3" style="min-height: 60px">
               {{ it.desc }}
@@ -83,6 +95,11 @@
 
 <script>
 export default {
+  computed: {
+    asMobile() {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
+  },
   data() {
     return {
       list: null,
