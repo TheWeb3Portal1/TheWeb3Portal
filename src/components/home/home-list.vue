@@ -57,21 +57,6 @@
                   color="primary"
                   text
                   x-small
-                  :href="it.git"
-                  target="_blank"
-                  v-if="it.git"
-                >
-                  <v-icon size="14">mdi-github</v-icon>
-                  <span class="ml-1">{{
-                    it.git.replace("https://github.com/", "").cutStr(0, 30)
-                  }}</span>
-                </v-btn>
-              </div>
-              <div>
-                <v-btn
-                  color="primary"
-                  text
-                  x-small
                   :href="it.hosting"
                   target="_blank"
                   v-if="it.hosting"

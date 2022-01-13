@@ -159,6 +159,11 @@ export default {
           href: "https://discord.gg/YFthrfxgZz",
           color: "#714bdf",
         },
+        // {
+        //   icon: "mdi-information-outline",
+        //   type: "about",
+        //   color: "#849BB4",
+        // },
       ],
     };
   },
