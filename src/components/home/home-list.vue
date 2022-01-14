@@ -94,7 +94,7 @@
                     v-if="it.cid"
                   >
                     <v-icon size="14">mdi-webpack</v-icon>
-                    <span class="ml-1">cid</span>
+                    <span class="ml-1">ipfs/{{ it.cid.cutStr(5, 8) }}</span>
                   </v-btn>
                 </div>
               </div>
