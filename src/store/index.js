@@ -13,6 +13,7 @@ const store = new Vuex.Store({
     isFocus: true,
     alertInfo: {},
     noticeMsg: {},
+    searchKey: "",
   },
   mutations: {
     [SET_DATA](state, data) {

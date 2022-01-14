@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <home-banner></home-banner>
+    <home-banner v-show="!searchKey"></home-banner>
     <e-wrap>
       <home-list></home-list>
     </e-wrap>
@@ -17,6 +17,7 @@ export default {
   computed: {
     ...mapState({
       noticeMsg: (s) => s.noticeMsg,
+      searchKey: (s) => s.searchKey,
     }),
   },
 };

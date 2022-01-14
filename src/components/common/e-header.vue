@@ -4,10 +4,10 @@
       <a href="/" class="mr-2"
         ><img contain src="img/logo.png" height="40" class="d-b"
       /></a>
-      <!-- <div class="bg-s1 d-flex al-c" :class="asMobile ? 'ml-auto' : 'ml-3'">
-        <input type="text" />
+      <div class="bg-s1 d-flex al-c" :class="asMobile ? 'ml-auto' : 'ml-3'">
+        <input type="text" v-model="searchKey" />
         <v-icon color="#fff" size="20">mdi-magnify</v-icon>
-      </div> -->
+      </div>
       <!-- <v-spacer></v-spacer> -->
       <!-- <div class="ml-auto">
         <v-btn text small> Connect Wallet </v-btn>
@@ -31,6 +31,13 @@ export default {
     return {
       searchKey: "",
     };
+  },
+  watch: {
+    searchKey(searchKey) {
+      this.$setState({
+        searchKey,
+      });
+    },
   },
   methods: {},
 };
