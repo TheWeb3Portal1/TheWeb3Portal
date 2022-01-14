@@ -9,8 +9,9 @@
           decentralized search portal in the future of the internet.
         </div>
       </v-col>
-      <v-col cols="12" md="6">
+      <v-col cols="12" md="6" class="ta-r">
         <!-- <div class="fl-r">A log of logos here</div> -->
+        <img src="img/apps.png" class="w100p" style="max-width: 300px" />
       </v-col>
     </v-row>
   </e-wrap>
