@@ -94,7 +94,7 @@
                     v-if="it.cid"
                   >
                     <v-icon size="14">mdi-webpack</v-icon>
-                    <span class="ml-1">ipfs/{{ it.cid.cutStr(10, 10) }}</span>
+                    <span class="ml-1">cid</span>
                   </v-btn>
                 </div>
               </div>
@@ -152,6 +152,11 @@ export default {
       list: null,
       page: 1,
     };
+  },
+  watch: {
+    searchKey() {
+      this.page = 1;
+    },
   },
   mounted() {
     this.getList();

@@ -53,6 +53,7 @@ export default {
     outline: none;
     padding: 7px 6px;
     color: #fff;
+    min-width: 220px;
   }
 }
 ::-webkit-input-placeholder {
