@@ -108,7 +108,8 @@
           been able to accomplish the dream of a more complete web3 Internet
           world and continue working towards creating a decentralized search
           portal. You truly make the difference for us, and we are extremely
-          grateful!--The Web3 Portal team
+          grateful!
+          <div class="ta-r mt-2">--The Web3 Portal team</div>
         </div>
         <v-tabs>
           <v-tab>Donate ETH</v-tab>
