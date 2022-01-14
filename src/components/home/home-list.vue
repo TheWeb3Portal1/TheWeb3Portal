@@ -12,12 +12,20 @@
       ></v-skeleton-loader>
 
       <div v-else>
+        <div class="pos-r d-flex al-c" style="top: -30px" v-if="searchKey">
+          <v-btn icon @click="$setState({ searchKey: '' })">
+            <v-icon>mdi-arrow-left</v-icon>
+          </v-btn>
+          <div v-if="resList.length">
+            {{ resList.length }} result{{ resList.length == 1 ? "" : "s" }}
+          </div>
+        </div>
         <div class="ta-c fw-b mt-15" v-if="!resList.length">
           No results Found. Try changing your filters or
           <a href="" target="_blank">submit an inclusion request</a>
         </div>
         <v-row>
-          <v-col cols="12" md="3" v-for="(it, i) in resList" :key="i">
+          <v-col cols="12" md="3" v-for="(it, i) in curList" :key="i">
             <div class="item pa-4 pl-5 bdrs-3">
               <div class="d-flex">
                 <a :href="it.link" target="_blank" class="hover-1">
@@ -94,6 +102,16 @@
           </v-col>
         </v-row>
       </div>
+
+      <div class="mt-6" v-if="pageLen > 1">
+        <v-pagination
+          v-model="page"
+          :length="pageLen"
+          prev-icon="mdi-menu-left"
+          next-icon="mdi-menu-right"
+          :total-visible="7"
+        ></v-pagination>
+      </div>
     </div>
   </div>
 </template>
@@ -110,16 +128,29 @@ export default {
       return this.$vuetify.breakpoint.smAndDown;
     },
     resList() {
-      if (!this.searchKey) return this.list;
+      if (!this.searchKey) return this.list || [];
       return this.list.filter((it) => {
         const reg = new RegExp(this.searchKey, "im");
-        return reg.test(it.title + it.desc);
+        return reg.test(it.title + it.desc + it.type + it.mainnet);
       });
+    },
+    size() {
+      return this.asMobile ? 5 : 12;
+    },
+    pageLen() {
+      return Math.ceil(this.resList.length / this.size);
+    },
+    curList() {
+      return this.resList.slice(
+        (this.page - 1) * this.size,
+        this.page * this.size
+      );
     },
   },
   data() {
     return {
       list: null,
+      page: 1,
     };
   },
   mounted() {

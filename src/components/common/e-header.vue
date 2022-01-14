@@ -5,7 +5,7 @@
         ><img contain src="img/logo.png" height="40" class="d-b"
       /></a>
       <div class="bg-s1 d-flex al-c" :class="asMobile ? 'ml-auto' : 'ml-3'">
-        <input type="text" v-model="searchKey" />
+        <input type="text" v-model="value" />
         <v-icon color="#fff" size="20">mdi-magnify</v-icon>
       </div>
       <!-- <v-spacer></v-spacer> -->
@@ -22,6 +22,9 @@ export default {
     asMobile() {
       return this.$vuetify.breakpoint.smAndDown;
     },
+    searchKey() {
+      return this.$store.state.searchKey;
+    },
     path() {
       const { path } = this.$route || {};
       return path;
@@ -29,14 +32,17 @@ export default {
   },
   data() {
     return {
-      searchKey: "",
+      value: "",
     };
   },
   watch: {
-    searchKey(searchKey) {
+    value(searchKey) {
       this.$setState({
         searchKey,
       });
+    },
+    searchKey(val) {
+      if (!val && this.value) this.value = "";
     },
   },
   methods: {},
