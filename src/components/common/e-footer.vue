@@ -4,6 +4,9 @@
     font-size: 15px;
   }
 }
+.bg-t1 {
+  background: linear-gradient(180deg, #edfff3, #e1f2ff, #ffffff);
+}
 @media screen and (max-width: 959px) {
   .e-footer .col-12 {
     text-align: center;
@@ -19,7 +22,7 @@
           <h3>© 2021-2022 web3 portal</h3>
           <div class="mt-4 fz-14 gray">
             <a href="https://www.4everland.org" target="_blank"
-              >Power by 4everland</a
+              >Power by 4everland&IPFS</a
             >
           </div>
         </v-col>
@@ -41,6 +44,7 @@
                   x-small
                   :href="it.href"
                   target="_blank"
+                  @click="onClick(it)"
                   class="mt-2"
                   rounded
                   :class="
@@ -71,7 +75,7 @@
 
         <v-col cols="12" md="4" class="ta-r" max-width="240px">
           <div class="mt-2">
-            <v-btn text @click="showPop = true">
+            <v-btn text @click="showDonate = true">
               <img src="img/donate.svg" class="ml-auto" style="width: 25px" />
               <h3 class="ml-2 mt-1">Donate</h3>
             </v-btn>
@@ -80,11 +84,21 @@
       </v-row>
     </div>
 
-    <v-dialog v-model="showPop" eager max-width="600">
-      <div
-        class="pa-8"
-        style="background: linear-gradient(180deg, #edfff3, #e1f2ff, #ffffff)"
-      >
+    <v-dialog v-model="showAbout" max-width="600">
+      <div class="pa-8 bg-t1">
+        <h2 class="ta-c lh-1 mb-3">About</h2>
+        <div class="fz-14 mb-6 gray-3">
+          Learn more about the Web3 and Discover Web3. An open-source portal
+          built for everyone. All included sites are based on IPFS decentralized
+          deployment and will never outage. We are trying to create a more
+          convenient and faster decentralized search portal in the future of the
+          internet. If you have any problems, welcome to join our
+          <a href="https://discord.gg/YFthrfxgZz" target="_blank">Discord</a>
+        </div>
+      </div>
+    </v-dialog>
+    <v-dialog v-model="showDonate" eager max-width="600">
+      <div class="pa-8 bg-t1">
         <h2 class="ta-c lh-1 mb-3">Donate</h2>
         <div class="fz-14 mb-6 gray-3">
           Thank you for your generous supports of the Web3 Portal. We are
@@ -137,7 +151,8 @@ export default {
   },
   data() {
     return {
-      showPop: false,
+      showDonate: false,
+      showAbout: false,
       links: [
         {
           icon: "mdi-github",
@@ -159,13 +174,21 @@ export default {
           href: "https://discord.gg/YFthrfxgZz",
           color: "#714bdf",
         },
-        // {
-        //   icon: "mdi-information-outline",
-        //   type: "about",
-        //   color: "#849BB4",
-        // },
+        {
+          icon: "mdi-information-outline",
+          type: "about",
+          color: "#849BB4",
+        },
       ],
     };
+  },
+  methods: {
+    onClick(it) {
+      console.log(it);
+      if (it.type == "about") {
+        this.showAbout = true;
+      }
+    },
   },
 };
 </script>

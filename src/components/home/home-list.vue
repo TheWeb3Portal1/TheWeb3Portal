@@ -15,9 +15,11 @@
         <v-col cols="12" md="3" v-for="(it, i) in list" :key="i">
           <div class="item pa-4 pl-5 bdrs-3">
             <div class="d-flex">
-              <v-avatar :size="55">
-                <v-img :src="it.logo || `img/logo/${it.title}.png`"></v-img>
-              </v-avatar>
+              <a :href="it.link" target="_blank" class="hover-1">
+                <v-avatar :size="55">
+                  <v-img :src="it.logo || `img/logo/${it.title}.png`"></v-img>
+                </v-avatar>
+              </a>
               <div class="ml-auto ta-r">
                 <v-chip small color="#A184BC" v-if="it.mainnet">
                   <span class="white-0">{{ it.mainnet }}</span>
@@ -29,7 +31,9 @@
                 </div>
               </div>
             </div>
-            <h3 class="mt-3 fz-15">{{ it.title }}</h3>
+            <h3 class="mt-3 fz-15">
+              <a :href="it.link" target="_blank">{{ it.title }}</a>
+            </h3>
             <div class="mt-1 fz-13 gray-3 line-3" style="min-height: 60px">
               {{ it.desc }}
             </div>
@@ -39,13 +43,13 @@
                   color="primary"
                   text
                   x-small
-                  :href="it.link"
+                  :href="it.hosting"
                   target="_blank"
-                  v-if="it.link"
+                  v-if="it.hosting"
                 >
                   <v-icon size="14">mdi-web</v-icon>
                   <span class="ml-1">{{
-                    it.link
+                    it.hosting
                       .replace("https://", "")
                       .replace(/\/$/, "")
                       .cutStr(0, 30)
@@ -57,17 +61,27 @@
                   color="primary"
                   text
                   x-small
-                  :href="it.hosting"
+                  :href="it.git"
                   target="_blank"
-                  v-if="it.hosting"
+                  v-if="it.git"
+                >
+                  <v-icon size="14">mdi-github</v-icon>
+                  <span class="ml-1">{{
+                    it.git.replace("https://github.com/", "").cutStr(0, 30)
+                  }}</span>
+                </v-btn>
+              </div>
+              <div>
+                <v-btn
+                  color="primary"
+                  text
+                  x-small
+                  :href="`https://ipfs.io/ipfs/${it.cid}`"
+                  target="_blank"
+                  v-if="it.cid"
                 >
                   <v-icon size="14">mdi-webpack</v-icon>
-                  <span class="ml-1">{{
-                    it.hosting
-                      .replace("https://", "")
-                      .replace(/\/$/, "")
-                      .cutStr(0, 30)
-                  }}</span>
+                  <span class="ml-1">ipfs/{{ it.cid.cutStr(10, 10) }}</span>
                 </v-btn>
               </div>
             </div>
