@@ -8,7 +8,7 @@
           never outage. We are trying to create a more convenient and faster
           decentralized search portal in the future of the internet.
         </div>
-        <div class="mt-10 d-flex">
+        <div class="mt-10 d-flex w100p" style="max-width: 280px">
           <e-search></e-search>
         </div>
       </v-col>
