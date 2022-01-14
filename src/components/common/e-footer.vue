@@ -22,8 +22,9 @@
           <h3>© 2021-2022 web3 portal</h3>
           <div class="mt-4 fz-14 gray">
             <a href="https://www.4everland.org" target="_blank"
-              >Power by 4everland&IPFS</a
+              >Power by 4everland</a
             >
+            & <a href="https://ipfs.io/" target="_blank">IPFS</a>
           </div>
         </v-col>
         <v-col cols="12" md="4" class="ta-c">
