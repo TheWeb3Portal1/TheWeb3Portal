@@ -103,14 +103,22 @@
         </v-row>
       </div>
 
-      <div class="mt-6" v-if="pageLen > 1">
-        <v-pagination
+      <div class="mt-10 ta-c" v-if="pageLen > 1">
+        <!-- <v-pagination
           v-model="page"
           :length="pageLen"
           prev-icon="mdi-menu-left"
           next-icon="mdi-menu-right"
           :total-visible="7"
-        ></v-pagination>
+        ></v-pagination> -->
+        <v-btn
+          outlined
+          :loading="loading"
+          v-if="list && page < pageLen"
+          @click="onLoad"
+        >
+          {{ loading ? "Loading" : "Load More" }}
+        </v-btn>
       </div>
     </div>
   </div>
@@ -142,7 +150,7 @@ export default {
     },
     curList() {
       return this.resList.slice(
-        (this.page - 1) * this.size,
+        0, //(this.page - 1) * this.size
         this.page * this.size
       );
     },
@@ -151,6 +159,7 @@ export default {
     return {
       list: null,
       page: 1,
+      loading: false,
     };
   },
   watch: {
@@ -162,6 +171,12 @@ export default {
     this.getList();
   },
   methods: {
+    async onLoad() {
+      this.loading = true;
+      await this.$sleep(500);
+      this.page += 1;
+      this.loading = false;
+    },
     async getList() {
       try {
         const { data } = await this.$http.get("/portal/list.json");
