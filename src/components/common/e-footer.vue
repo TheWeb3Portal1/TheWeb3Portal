@@ -94,7 +94,7 @@
           deployment and will never outage. We are trying to create a more
           convenient and faster decentralized search portal in the future of the
           internet. If you have any problems, welcome to join our
-          <a href="https://discord.gg/YFthrfxgZz" target="_blank">Discord</a>
+          <a href="https://discord.gg/UQg3VZ2FpB" target="_blank">Discord</a>
         </div>
       </div>
     </v-dialog>
@@ -173,7 +173,7 @@ export default {
         // },
         {
           icon: "mdi-discord",
-          href: "https://discord.gg/YFthrfxgZz",
+          href: "https://discord.gg/UQg3VZ2FpB",
           color: "#714bdf",
         },
         {
